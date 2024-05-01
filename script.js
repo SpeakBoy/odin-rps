@@ -1,3 +1,6 @@
+let humanScore = 0;
+let computerScore = 0;
+
 function getComputerChoice() {
     const randomChoice = parseInt(Math.random() * 3); // "Randomly" chooses a number between 0 and 2.
     let computerChoice;
