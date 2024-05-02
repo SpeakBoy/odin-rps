@@ -34,3 +34,24 @@ function getHumanChoice() {
 
     return humanChoice;
 }
+
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
+
+function playRound(humanChoice, computerChoice) {
+    if (humanChoice === computerChoice) {
+        alert("It's a draw!");
+    } else if (
+        (humanChoice === "paper" && computerChoice === "rock") ||
+        (humanChoice === "scissors" && computerChoice === "paper") ||
+        (humanChoice === "rock" && computerChoice === "scissors")
+    ) {
+        alert("You win, " + humanChoice + " beats " + computerChoice + "!");
+        humanScore++;
+    } else {
+        alert("You lose, " + computerChoice + " beats " + humanChoice + "!");
+        computerScore++;
+    }
+}
+
+playRound(humanSelection, computerSelection);
