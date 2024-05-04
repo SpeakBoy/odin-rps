@@ -32,26 +32,6 @@ function getComputerChoice() {
     return computerChoice;
 }
 
-function getHumanChoice() {
-    let humanChoice;
-    while (humanChoice === undefined) {
-        const humanInput = prompt(
-            "Please input your choice (rock, paper, scissors): "
-        );
-        if (humanInput.toLowerCase() === "rock") {
-            humanChoice = "rock";
-        } else if (humanInput.toLowerCase() === "paper") {
-            humanChoice = "paper";
-        } else if (humanInput.toLowerCase() === "scissors") {
-            humanChoice = "scissors";
-        } else {
-            alert("Invalid input.");
-        }
-    }
-
-    return humanChoice;
-}
-
 function playRound(humanChoice, computerChoice) {
     if (humanChoice === computerChoice) {
         alert("It's a draw!");
