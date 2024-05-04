@@ -1,3 +1,23 @@
+let humanScore = 0;
+let computerScore = 0;
+
+const rockBtn = document.querySelector(".rock-button");
+const paperBtn = document.querySelector(".paper-button");
+const scissorsBtn = document.querySelector(".scissors-button");
+
+rockBtn.addEventListener("click", () => {
+    const computerSelection = getComputerChoice();
+    playRound("rock", computerSelection);
+});
+paperBtn.addEventListener("click", () => {
+    const computerSelection = getComputerChoice();
+    playRound("paper", computerSelection);
+});
+scissorsBtn.addEventListener("click", () => {
+    const computerSelection = getComputerChoice();
+    playRound("scissors", computerSelection);
+});
+
 function getComputerChoice() {
     const randomChoice = parseInt(Math.random() * 3); // "Randomly" chooses a number between 0 and 2.
     let computerChoice;
@@ -32,63 +52,56 @@ function getHumanChoice() {
     return humanChoice;
 }
 
-function playGame() {
-    let humanScore = 0;
-    let computerScore = 0;
-    let roundsRemaining = 5;
-
-    while (roundsRemaining > 0) {
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-        playRound(humanSelection, computerSelection);
-        roundsRemaining--;
+function playRound(humanChoice, computerChoice) {
+    if (humanChoice === computerChoice) {
+        alert("It's a draw!");
+    } else if (
+        (humanChoice === "paper" && computerChoice === "rock") ||
+        (humanChoice === "scissors" && computerChoice === "paper") ||
+        (humanChoice === "rock" && computerChoice === "scissors")
+    ) {
+        alert("You win, " + humanChoice + " beats " + computerChoice + "!");
+        humanScore++;
+    } else {
+        alert("You lose, " + computerChoice + " beats " + humanChoice + "!");
+        computerScore++;
     }
-
-    decideWinner();
-
-    function playRound(humanChoice, computerChoice) {
-        if (humanChoice === computerChoice) {
-            alert("It's a draw!");
-        } else if (
-            (humanChoice === "paper" && computerChoice === "rock") ||
-            (humanChoice === "scissors" && computerChoice === "paper") ||
-            (humanChoice === "rock" && computerChoice === "scissors")
-        ) {
-            alert("You win, " + humanChoice + " beats " + computerChoice + "!");
-            humanScore++;
-        } else {
-            alert(
-                "You lose, " + computerChoice + " beats " + humanChoice + "!"
-            );
-            computerScore++;
-        }
+    console.log(humanScore, computerScore);
+    if (humanScore >= 5 || computerScore >= 5) {
+        decideWinner();
+        resetScore();
     }
+}
 
-    function decideWinner() {
-        if (humanScore > computerScore) {
-            alert(
-                "You win, " +
-                    humanScore +
-                    " to " +
-                    computerScore +
-                    "! Congratulations!"
-            );
-        } else if (computerScore > humanScore) {
-            alert(
-                "You lose, " +
-                    humanScore +
-                    " to " +
-                    computerScore +
-                    "! Better luck next time!"
-            );
-        } else {
-            alert(
-                "It's a draw, " +
-                    humanScore +
-                    " to " +
-                    computerScore +
-                    "! Almost won!"
-            );
-        }
+function decideWinner() {
+    if (humanScore > computerScore) {
+        alert(
+            "You win, " +
+                humanScore +
+                " to " +
+                computerScore +
+                "! Congratulations!"
+        );
+    } else if (computerScore > humanScore) {
+        alert(
+            "You lose, " +
+                humanScore +
+                " to " +
+                computerScore +
+                "! Better luck next time!"
+        );
+    } else {
+        alert(
+            "It's a draw, " +
+                humanScore +
+                " to " +
+                computerScore +
+                "! Almost won!"
+        );
     }
+}
+
+function resetScore() {
+    humanScore = 0;
+    computerScore = 0;
 }
