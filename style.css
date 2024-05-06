@@ -1,3 +1,10 @@
+button {
+    border-radius: 10px;
+    padding: 20px;
+    font-size: large;
+    font-weight: bold;
+}
+
 .body-container {
     display: flex;
     flex-direction: column;
@@ -25,11 +32,14 @@
 
 .round-state {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    gap: 30px;
 }
 
 .choice-container {
-    display: flex;
+    display: none;
     justify-content: center;
     gap: 30px;
     margin-top: 50px;

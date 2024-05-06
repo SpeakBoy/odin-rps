@@ -4,8 +4,10 @@ let computerScore = 0;
 const rockBtn = document.querySelector(".rock-button");
 const paperBtn = document.querySelector(".paper-button");
 const scissorsBtn = document.querySelector(".scissors-button");
-
+const choiceContainer = document.querySelector(".choice-container");
 const startBtn = document.querySelector(".start-button");
+const selectionText = document.querySelector(".selection-text");
+const roundResult = document.querySelector(".round-result");
 
 startBtn.addEventListener("click", startGame);
 
@@ -24,6 +26,10 @@ scissorsBtn.addEventListener("click", () => {
 
 function startGame() {
     startBtn.style.display = "none";
+    choiceContainer.style.display = "flex";
+    selectionText.textContent = "Please make a selection.";
+    roundResult.textContent = "";
+    updateScore();
 }
 
 function getComputerChoice() {
@@ -42,26 +48,22 @@ function getComputerChoice() {
 
 function playRound(humanChoice, computerChoice) {
     if (humanChoice === computerChoice) {
-        alert("It's a draw!");
+        roundResult.textContent = "It's a draw!";
     } else if (
         (humanChoice === "paper" && computerChoice === "rock") ||
         (humanChoice === "scissors" && computerChoice === "paper") ||
         (humanChoice === "rock" && computerChoice === "scissors")
     ) {
-        alert("You win, " + humanChoice + " beats " + computerChoice + "!");
+        roundResult.textContent =
+            "You win, " + humanChoice + " beats " + computerChoice + "!";
         humanScore++;
     } else {
-        alert("You lose, " + computerChoice + " beats " + humanChoice + "!");
+        roundResult.textContent =
+            "You lose, " + computerChoice + " beats " + humanChoice + "!";
         computerScore++;
     }
 
-    const humanScoreElement = document.querySelector(".human-score-value");
-    const computerScoreElement = document.querySelector(
-        ".computer-score-value"
-    );
-
-    humanScoreElement.textContent = humanScore;
-    computerScoreElement.textContent = computerScore;
+    updateScore();
 
     if (humanScore >= 5 || computerScore >= 5) {
         decideWinner();
@@ -71,33 +73,27 @@ function playRound(humanChoice, computerChoice) {
 
 function decideWinner() {
     if (humanScore > computerScore) {
-        alert(
-            "You win, " +
-                humanScore +
-                " to " +
-                computerScore +
-                "! Congratulations!"
-        );
-    } else if (computerScore > humanScore) {
-        alert(
-            "You lose, " +
-                humanScore +
-                " to " +
-                computerScore +
-                "! Better luck next time!"
-        );
+        roundResult.textContent = "You win! Congratulations!";
     } else {
-        alert(
-            "It's a draw, " +
-                humanScore +
-                " to " +
-                computerScore +
-                "! Almost won!"
-        );
+        roundResult.textContent = "You lose! Better luck next time!";
     }
+    choiceContainer.style.display = "none";
+    startBtn.style.display = "flex";
+    selectionText.textContent = "Click the button to play again.";
+    startBtn.textContent = "Play again";
 }
 
 function resetScore() {
     humanScore = 0;
     computerScore = 0;
+}
+
+function updateScore() {
+    const humanScoreElement = document.querySelector(".human-score-value");
+    const computerScoreElement = document.querySelector(
+        ".computer-score-value"
+    );
+
+    humanScoreElement.textContent = humanScore;
+    computerScoreElement.textContent = computerScore;
 }
