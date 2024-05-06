@@ -5,6 +5,10 @@ const rockBtn = document.querySelector(".rock-button");
 const paperBtn = document.querySelector(".paper-button");
 const scissorsBtn = document.querySelector(".scissors-button");
 
+const startBtn = document.querySelector(".start-button");
+
+startBtn.addEventListener("click", startGame);
+
 rockBtn.addEventListener("click", () => {
     const computerSelection = getComputerChoice();
     playRound("rock", computerSelection);
@@ -17,6 +21,10 @@ scissorsBtn.addEventListener("click", () => {
     const computerSelection = getComputerChoice();
     playRound("scissors", computerSelection);
 });
+
+function startGame() {
+    startBtn.style.display = "none";
+}
 
 function getComputerChoice() {
     const randomChoice = parseInt(Math.random() * 3); // "Randomly" chooses a number between 0 and 2.
@@ -46,7 +54,15 @@ function playRound(humanChoice, computerChoice) {
         alert("You lose, " + computerChoice + " beats " + humanChoice + "!");
         computerScore++;
     }
-    console.log(humanScore, computerScore);
+
+    const humanScoreElement = document.querySelector(".human-score-value");
+    const computerScoreElement = document.querySelector(
+        ".computer-score-value"
+    );
+
+    humanScoreElement.textContent = humanScore;
+    computerScoreElement.textContent = computerScore;
+
     if (humanScore >= 5 || computerScore >= 5) {
         decideWinner();
         resetScore();

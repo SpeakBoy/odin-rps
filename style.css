@@ -1,0 +1,36 @@
+.body-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.human-score,
+.computer-score {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.human-score-value,
+.computer-score-value {
+    font-size: 60px;
+    margin-top: -10px;
+}
+
+.round-state {
+    display: flex;
+    justify-content: center;
+}
+
+.choice-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 50px;
+}
