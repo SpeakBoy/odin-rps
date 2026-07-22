@@ -1,6 +1,3 @@
-let humanScore = 0;
-let computerScore = 0;
-
 function getComputerChoice()
 {
     const randChoice = Math.floor(Math.random() * 3);
@@ -23,55 +20,86 @@ function getHumanChoice()
     return humanChoice;
 }
 
-function playRound(humanChoice, computerChoice)
-{
-    // This ensures that correct user input will function,
-    // regardless of whether it is intially upper- or lower-case.
-    humanChoice = humanChoice.toLowerCase();
 
-    if (humanChoice === computerChoice)
+
+function playGame()
+{
+    let humanScore = 0;
+    let computerScore = 0;
+
+    let roundsPlayed = 0;
+    while (roundsPlayed < 5)
     {
-        alert("Draw!");
-        return;
+        playRound(getHumanChoice(), getComputerChoice());
+        roundsPlayed++;
     }
 
-    switch (humanChoice)
+    let scoreMessage = `Human: ${humanScore} - Computer: ${computerScore}`;
+    if (humanScore > computerScore)
     {
-        case "rock":
-            if (computerChoice === "scissors")
-            {
-                alert("You win! Rock beats Scissors!");
-                humanScore++;
-            }
-            else
-            {
-                alert("You lose! Paper beats Rock!");
-                computerScore++;
-            }
-            break;
-        case "paper":
-            if (computerChoice === "rock")
-            {
-                alert("You win! Paper beats Rock!");
-                humanScore++;
-            }
-            else
-            {
-                alert("You lose! Scissors beats Paper!");
-                computerScore++;
-            }
-            break;
-        case "scissors":
-            if (computerChoice === "paper")
-            {
-                alert("You win! Scissors beats Paper!");
-                humanScore++;
-            }
-            else
-            {
-                alert("You lose! Rock beats Scissors!");
-                computerScore++;
-            }
-            break;
+        alert(`You win!\n${scoreMessage}`);
+    }
+    else if (humanScore < computerScore)
+    {
+        alert(`You lose!\n${scoreMessage}`);
+    }
+    else
+    {
+        alert(`Draw!\n${scoreMessage}`);
+    }
+
+    function playRound(humanChoice, computerChoice)
+    {
+        // This ensures that correct user input will function,
+        // regardless of whether it is intially upper- or lower-case.
+        humanChoice = humanChoice.toLowerCase();
+
+        if (humanChoice === computerChoice)
+        {
+            alert("Draw!");
+            return;
+        }
+
+        switch (humanChoice)
+        {
+            case "rock":
+                if (computerChoice === "scissors")
+                {
+                    alert("You win! Rock beats Scissors!");
+                    humanScore++;
+                }
+                else
+                {
+                    alert("You lose! Paper beats Rock!");
+                    computerScore++;
+                }
+                break;
+            case "paper":
+                if (computerChoice === "rock")
+                {
+                    alert("You win! Paper beats Rock!");
+                    humanScore++;
+                }
+                else
+                {
+                    alert("You lose! Scissors beats Paper!");
+                    computerScore++;
+                }
+                break;
+            case "scissors":
+                if (computerChoice === "paper")
+                {
+                    alert("You win! Scissors beats Paper!");
+                    humanScore++;
+                }
+                else
+                {
+                    alert("You lose! Rock beats Scissors!");
+                    computerScore++;
+                }
+                break;
+        }
     }
 }
+
+playGame();
