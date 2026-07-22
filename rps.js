@@ -20,8 +20,6 @@ function getHumanChoice()
     return humanChoice;
 }
 
-
-
 function playGame()
 {
     let humanScore = 0;
@@ -34,18 +32,23 @@ function playGame()
         roundsPlayed++;
     }
 
-    let scoreMessage = `Human: ${humanScore} - Computer: ${computerScore}`;
-    if (humanScore > computerScore)
+    displayResult();
+
+    function displayResult()
     {
-        alert(`You win!\n${scoreMessage}`);
-    }
-    else if (humanScore < computerScore)
-    {
-        alert(`You lose!\n${scoreMessage}`);
-    }
-    else
-    {
-        alert(`Draw!\n${scoreMessage}`);
+        let scoreMessage = `Human: ${humanScore} - Computer: ${computerScore}`;
+        if (humanScore > computerScore)
+        {
+            alert(`You win!\n${scoreMessage}`);
+        }
+        else if (humanScore < computerScore)
+        {
+            alert(`You lose!\n${scoreMessage}`);
+        }
+        else
+        {
+            alert(`Draw!\n${scoreMessage}`);
+        }
     }
 
     function playRound(humanChoice, computerChoice)
