@@ -1,3 +1,3 @@
 # Odin Rock Paper Scissors
 
-A command-line version of the classic game.
+The classic game played using a barebones UI.
