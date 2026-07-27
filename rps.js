@@ -26,11 +26,8 @@ function playGame()
     let computerScore = 0;
 
     let roundsPlayed = 0;
-    while (roundsPlayed < 5)
-    {
-        playRound(getHumanChoice(), getComputerChoice());
-        roundsPlayed++;
-    }
+
+    playRound(getHumanChoice(), getComputerChoice());
 
     displayResult();
 
@@ -104,5 +101,3 @@ function playGame()
         }
     }
 }
-
-playGame();
